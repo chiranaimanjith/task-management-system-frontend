@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { StorageService } from './auth/services/storege/storage.service';
+import { Router } from '@angular/router';
+import { every } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'task_managemant_system';
+  isEmployeeLoggedIn: boolean= StorageService.isEmployeeLoggedIn();
+  isAdminLoggedIn: boolean= StorageService.isAdminLoggedIn();
+
+  constructor(private router: Router){}
+  
+  ngOnInit(){
+    this.router.events.subscribe(event=>{
+      this.isEmployeeLoggedIn=StorageService.isEmployeeLoggedIn();
+      this.isAdminLoggedIn=StorageService.isAdminLoggedIn();
+    })
+  }
+
+  logout(){
+    StorageService.logout();
+    this.router.navigateByUrl("/login")
+  }
 }
