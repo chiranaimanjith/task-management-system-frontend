@@ -12,8 +12,7 @@ export class PostTaskComponent {
   taskForm!: FormGroup
   listOfEmployees:any=[];
   listOfPriorities:any=["LOW", "MEDIUM", "HIGH"];
-
-
+    
   constructor(private adminService: AdminService,
     private fb:FormBuilder
   ) {
@@ -34,4 +33,12 @@ export class PostTaskComponent {
 
     })
   }
+
+
+  postTask(){ 
+    console.log(this.taskForm.value);
+    
+  }
+
+
 }
