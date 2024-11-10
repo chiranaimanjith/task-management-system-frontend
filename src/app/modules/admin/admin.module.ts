@@ -5,7 +5,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { PostTaskComponent } from './component/post-task/post-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { DemoAngularMaterailModule } from 'src/app/DemoAngularMaterialModules';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    DemoAngularMaterailModule
   ]
 })
 export class AdminModule { }
