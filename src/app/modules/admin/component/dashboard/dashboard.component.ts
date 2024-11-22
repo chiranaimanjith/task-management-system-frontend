@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../Service/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,11 +10,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DashboardComponent {
   listOfTasks: any = [];
+  searchForm!: FormGroup
 
   constructor(private service: AdminService,
-    private snackbar:MatSnackBar
+    private snackbar:MatSnackBar,
+    private fb: FormBuilder
   ) {
     this.getTasks();
+    this.searchForm=this.fb.group({
+      title:[null]
+    })
   }
 
   getTasks() {
@@ -29,4 +35,13 @@ export class DashboardComponent {
     })
   }
 
+  searchTask(){
+    this.listOfTasks=[]
+    const title = this.searchForm.get('title')!.value;
+    console.log(title);
+    this.service.searchTask(title).subscribe((res)=>{
+      console.log(res);
+      this.listOfTasks=res;
+    })
+  }
 }
