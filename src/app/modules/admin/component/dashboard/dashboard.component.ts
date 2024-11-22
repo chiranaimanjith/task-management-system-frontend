@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../Service/admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +8,25 @@ import { AdminService } from '../../Service/admin.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-listOfTasks : any=[];
+  listOfTasks: any = [];
 
-constructor(private service: AdminService){
-  this.getTasks();
-}
+  constructor(private service: AdminService,
+    private snackbar:MatSnackBar
+  ) {
+    this.getTasks();
+  }
 
-getTasks(){
-  this.service.getAllTask().subscribe((res)=>{
-    this.listOfTasks=res;
-  })
-}
+  getTasks() {
+    this.service.getAllTasks().subscribe((res) => {
+      this.listOfTasks = res;
+    })
+  }
+
+  deleteTask(id:number){
+    this.service.deleteTask(id).subscribe((res)=>{
+         this.snackbar.open("Task deleted successfully", "Close", {duration: 5000 });
+         this.getTasks();
+    })
+  }
 
 }

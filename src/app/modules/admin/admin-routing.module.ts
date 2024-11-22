@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { PostTaskComponent } from './component/post-task/post-task.component';
+import { UpdateTaskComponent } from './component/update-task/update-task.component';
 
 const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
-  {path: "task", component: PostTaskComponent}
+  {path: "task", component: PostTaskComponent},
+  {path: "task/:id/edit", component: UpdateTaskComponent}
 ];
 
 @NgModule({
