@@ -28,7 +28,6 @@
                     <mat-icon>edit</mat-icon>
                 </button>   
                 <mat-menu #statusMenu="matMenu">
-                
                     <button mat-menu-item (click)="updateStatus(task.id), 'INPROGRESS'">INPROGRESS</button>
                     <button mat-menu-item (click)="updateStatus(task.id), 'COMPLETED'">COMPLETED</button>
                 </mat-menu>
